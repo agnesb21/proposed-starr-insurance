@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Starr SG – CTA UX Recommendation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0d2b5e;
+    --navy-dark: #071a3e;
+    --navy-mid: #1a3a6e;
+    --gold: #f5a623;
+    --gold-light: #ffc542;
+    --white: #ffffff;
+    --offwhite: #f4f6fb;
+    --text-muted: #6b7a99;
+    --green: #27ae60;
+    --border: #d6dff0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #eef1f8;
+    color: #1a2340;
+  }
+
+  /* ── LABEL STRIP ── */
+  .label-strip {
+    background: var(--navy-dark);
+    color: #a8bcd8;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px 20px;
+  }
+  .label-strip span { color: var(--gold); }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 60px 24px 0;
+  }
+
+  /* ══════════════════════════════════
+     PART 1 – Homepage "How We Support You"
+  ══════════════════════════════════ */
+  .homepage-block {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(13,43,94,0.12);
+    margin-bottom: 48px;
+  }
+
+  .hp-hero {
+    background: linear-gradient(160deg, #0d2b5e 55%, #1a4a8a 100%);
+    padding: 48px 48px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .hp-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--white);
+    text-align: center;
+    letter-spacing: -0.02em;
+  }
+
+  /* Fake airport image placeholder */
+  .hero-img-bar {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(180deg, rgba(13,43,94,0.2) 0%, rgba(13,43,94,0.0) 100%),
+                url('https://images.unsplash.com/photo-1530521954074-e64f6810b32d?w=900&q=80') center/cover no-repeat;
+    border-radius: 12px 12px 0 0;
+    margin-top: 8px;
+  }
+
+  .hp-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0 32px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hp-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 28px 20px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(13,43,94,0.1);
+    border: 1px solid var(--border);
+  }
+
+  .hp-card .icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .hp-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .hp-card p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── CTA BUTTON AREA ── */
+  .cta-area {
+    background: var(--navy-dark);
+    padding: 40px 32px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 0;
+  }
+
+  /* OLD CTA */
+  .cta-old-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ff6b6b;
+    font-weight: 600;
+  }
+
+  .cta-old {
+    background: var(--gold);
+    color: var(--navy-dark);
+    border: 3px solid #ff6b6b;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    opacity: 0.55;
+    position: relative;
+    text-decoration: line-through;
+    text-decoration-color: #ff6b6b;
+    text-decoration-thickness: 2px;
+  }
+
+  .badge-old {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: #ff6b6b;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ARROW */
+  .arrow-down {
+    color: var(--gold);
+    font-size: 28px;
+    animation: bounce 1.4s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* NEW CTA */
+  .cta-new-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .cta-new-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cta-new {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 42px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+
+  .cta-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(245,166,35,0.5);
+  }
+
+  .badge-new {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: var(--green);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .cta-sub {
+    font-size: 12px;
+    color: #7a9abf;
+    text-align: center;
+  }
+
+  /* annotation */
+  .annotation {
+    background: rgba(39,174,96,0.12);
+    border: 1px solid rgba(39,174,96,0.3);
+    border-radius: 8px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 420px;
+    text-align: left;
+  }
+
+  .annotation .icon { font-size: 16px; }
+  .annotation p { font-size: 12px; color: #b8d4c0; line-height: 1.5; }
+  .annotation strong { color: #6ee09a; }
+
+  /* ══════════════════════════════════
+     PART 2 – Travel Insurance Page
+  ══════════════════════════════════ */
+
+  .travel-page {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(13,43,94,0.12);
+    margin-bottom: 80px;
+  }
+
+  .tp-header {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-mid) 100%);
+    padding: 32px 40px 28px;
+  }
+
+  .tp-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .tp-header p {
+    font-size: 13px;
+    color: #8fafd4;
+  }
+
+  /* quote form strip */
+  .quote-form {
+    background: var(--offwhite);
+    border-bottom: 2px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .form-field label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .form-field select, .form-field input {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    outline: none;
+  }
+
+  .quote-btn {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  /* ── NUDGE BANNER ── */
+  .nudge-banner {
+    background: linear-gradient(90deg, #fff8e8 0%, #fffdf5 100%);
+    border-top: 3px solid var(--gold);
+    border-bottom: 1px solid #fde8b0;
+    padding: 14px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nudge-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nudge-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .nudge-text strong {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 2px;
+  }
+
+  .nudge-text span {
+    font-size: 12px;
+    color: #7a6020;
+  }
+
+  .nudge-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nudge-btn {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-size: 12.5px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.15s;
+  }
+
+  .nudge-btn:hover { background: var(--navy-mid); }
+
+  .nudge-dismiss {
+    font-size: 11px;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* ── COMPARISON TABLE SECTION ── */
+  .comparison-section {
+    padding: 36px 40px 48px;
+    background: var(--white);
+  }
+
+  .comparison-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--navy-dark);
+    margin-bottom: 6px;
+  }
+
+  .comparison-section .sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .plan-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px 0;
+    table-layout: fixed;
+  }
+
+  .plan-table th {
+    background: var(--navy);
+    color: white;
+    padding: 16px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .plan-table th.gold-col { background: var(--gold); color: var(--navy-dark); }
+  .plan-table th .tier { font-size: 18px; font-weight: 700; font-family: 'Playfair Display', serif; display: block; }
+  .plan-table th .price { font-size: 12px; font-weight: 400; margin-top: 2px; opacity: 0.8; }
+  .plan-table th .price strong { font-size: 20px; font-weight: 700; }
+
+  .plan-table td {
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: #2d3a5a;
+    text-align: center;
+    background: var(--offwhite);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .plan-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--navy);
+    background: white;
+    border-right: 1px solid var(--border);
+  }
+
+  .plan-table tr:last-child td { border-bottom: none; }
+
+  .plan-table .check { color: var(--green); font-size: 15px; }
+  .plan-table .cross { color: #e74c3c; font-size: 15px; }
+
+  .select-plan-btn {
+    background: var(--gold);
+    color: var(--navy-dark);
+    border: none;
+    border-radius: 7px;
+    padding: 9px 18px;
+    font-size: 12.5px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+  }
+
+  .select-plan-btn:hover { background: var(--gold-light); }
+
+  .tfoot-row td {
+    background: white !important;
+    padding-top: 16px !important;
+  }
+
+  /* locked overlay */
+  .locked-overlay {
+    position: relative;
+  }
+
+  .lock-msg {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.97) 40%);
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 180px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 24px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .lock-inner {
+    text-align: center;
+  }
+
+  .lock-inner .lock-icon { font-size: 22px; margin-bottom: 6px; }
+  .lock-inner p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+  .lock-inner .unlock-btn {
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* annotations panel */
+  .annotations {
+    background: #f0f4ff;
+    border-top: 1px solid var(--border);
+    padding: 28px 40px;
+  }
+
+  .annotations h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .ann-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .ann-item {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    border-left: 3px solid var(--gold);
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #3a4a6a;
+  }
+
+  .ann-item strong {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--navy);
+    margin-bottom: 5px;
+  }
+
+  /* ── SECTION DIVIDERS ── */
+  .section-title {
+    max-width: 960px;
+    margin: 48px auto 16px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-title .num {
+    width: 32px;
+    height: 32px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--navy-dark);
+  }
+
+  .section-title .tag {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-left: auto;
+  }
+
+  /* ── PROMO BANNER ── */
+  .promo-banner {
+    background: #f0f4fb;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin: 16px 40px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .promo-left {
+    font-size: 14px;
+    color: var(--navy);
+  }
+
+  .promo-left strong {
+    font-weight: 700;
+    color: var(--navy-dark);
+  }
+
+  .promo-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--navy);
+    white-space: nowrap;
+  }
+
+  .promo-right .clock { font-size: 16px; }
+
+  .promo-timer {
+    font-weight: 700;
+    color: var(--navy-dark);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+
+  /* footer space */
+  .spacer { height: 24px; }
+</style>
+</head>
+<body>
+
+<div class="label-strip">
+  UX Recommendation Mockup — <span>Starr SG Travel Insurance</span> · CTA Revamp
+</div>
+
+<!-- ═══ SECTION 1: Homepage ═══ -->
+<div class="section-title">
+  <div class="num">1</div>
+  <h2>Homepage — "How We Support You" Section</h2>
+  <span class="tag">Current → Revised</span>
+</div>
+
+<div class="section">
+  <div class="homepage-block">
+    <div class="hp-hero">
+      <h2>How We Support You</h2>
+      <div class="hero-img-bar"></div>
+    </div>
+
+    <div class="hp-cards">
+      <div class="hp-card">
+        <span class="icon">🏥</span>
+        <h4>24/7 Emergency Medical Assistance</h4>
+        <p>Support for medical emergencies abroad, with round-the-clock access to our assistance team.</p>
+      </div>
+      <div class="hp-card">
+        <span class="icon">📋</span>
+        <h4>Simple Online Purchase</h4>
+        <p>Get covered in just a few clicks with a straightforward, digital process.</p>
+      </div>
+      <div class="hp-card">
+        <span class="icon">📄</span>
+        <h4>Hassle-Free Claims Support</h4>
+        <p>An efficient, transparent claims process that makes it easy to submit and track your claim from anywhere.</p>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <!-- OLD -->
+      <div class="cta-old-label">❌ Before — Creates a dead-end</div>
+      <div style="position:relative; display:inline-block;">
+        <button class="cta-old">Compare Travel Plans Now</button>
+        <span class="badge-old">Problem</span>
+      </div>
+
+      <div class="arrow-down">↓</div>
+
+      <!-- NEW -->
+      <div class="cta-new-label">✅ After — Sets honest expectation</div>
+      <div class="cta-new-wrapper">
+        <div style="position:relative; display:inline-block;">
+          <button class="cta-new">View &amp; Compare Plans →</button>
+          <span class="badge-new">Recommended</span>
+        </div>
+        <p class="cta-sub">Browse Bronze, Silver &amp; Gold — no form required to start</p>
+      </div>
+
+      <div class="annotation">
+        <span class="icon">💡</span>
+        <p><strong>What changes:</strong> Label is honest about the destination. Subtext pre-empts the form barrier. On click → navigates to Travel Insurance page and smooth-scrolls directly to the comparison table section.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: Travel Insurance Page ═══ -->
+<div class="section-title">
+  <div class="num">2</div>
+  <h2>Travel Insurance Page — Comparison Table + Nudge Banner</h2>
+  <span class="tag">New Component</span>
+</div>
+
+<div class="section">
+  <div class="travel-page">
+
+    <!-- Page header -->
+    <div class="tp-header">
+      <h3>Travel Insurance</h3>
+      <p>Travel abroad with peace of mind — covering medical emergencies, cancellations, lost baggage & more.</p>
+    </div>
+
+    <!-- Quote form (existing) -->
+    <div class="quote-form">
+      <div class="form-field">
+        <label>Trip Type</label>
+        <select><option>Single Trip</option><option>Annual</option></select>
+      </div>
+      <div class="form-field">
+        <label>Destination</label>
+        <select><option>SEAsia</option><option>Asia</option><option>Worldwide</option></select>
+      </div>
+      <div class="form-field">
+        <label>Traveller</label>
+        <select><option>Individual</option><option>Family</option></select>
+      </div>
+      <div class="form-field">
+        <label>Departure</label>
+        <input type="text" placeholder="DD/MM/YYYY" />
+      </div>
+      <div class="form-field">
+        <label>Return</label>
+        <input type="text" placeholder="DD/MM/YYYY" />
+      </div>
+      <button class="quote-btn">Get Quote</button>
+    </div>
+
+    <!-- 🆕 PROMO BANNER -->
+    <div class="promo-banner">
+      <div class="promo-left">
+        Enter code: <strong>TSBRONZE</strong> to get <strong>7% OFF</strong> the Single Plan
+      </div>
+      <div class="promo-right">
+        <span class="clock">🕐</span>
+        Promo ends in <span class="promo-timer" id="promoTimer">326d : 09h : 11m</span>
+      </div>
+    </div>
+
+    <!-- 🆕 NUDGE BANNER -->
+    <div class="nudge-banner" id="nudgeBanner">
+      <div class="nudge-left">
+        <div class="nudge-icon">💛</div>
+        <div class="nudge-text">
+          <strong>Comparing plans? Prices below are indicative.</strong>
+          <span>Fill in your trip details above to unlock your exact personalised quote.</span>
+        </div>
+      </div>
+      <div class="nudge-right">
+        <button class="nudge-btn" onclick="document.querySelector('.quote-form').scrollIntoView({behavior:'smooth'})">
+          ↑ Enter My Trip Details
+        </button>
+        <button class="nudge-dismiss" onclick="document.getElementById('nudgeBanner').style.display='none'">Dismiss</button>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="comparison-section">
+      <h3>Find The Right Plan For Your Needs</h3>
+      <p class="sub">Indicative pricing shown — enter your trip details above to get your exact quote.</p>
+
+      <div class="locked-overlay">
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th style="background:white; color: var(--navy); text-align:left; border-radius:10px 10px 0 0;">Coverage</th>
+              <th class="gold-col">
+                <span class="tier">Gold</span>
+                <span class="price">from <strong>S$42</strong>/trip</span>
+              </th>
+              <th style="background: #2a5298;">
+                <span class="tier">Silver</span>
+                <span class="price">from <strong>S$29</strong>/trip</span>
+              </th>
+              <th>
+                <span class="tier">Bronze</span>
+                <span class="price">from <strong>S$18</strong>/trip</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Medical Expenses</td>
+              <td><strong>$1,000,000</strong></td>
+              <td><strong>$500,000</strong></td>
+              <td><strong>$200,000</strong></td>
+            </tr>
+            <tr>
+              <td>Trip Cancellation</td>
+              <td><strong>$15,000</strong></td>
+              <td><strong>$10,000</strong></td>
+              <td><strong>$5,000</strong></td>
+            </tr>
+            <tr>
+              <td>Personal Liability</td>
+              <td><strong>$1,000,000</strong></td>
+              <td><strong>$800,000</strong></td>
+              <td><strong>$500,000</strong></td>
+            </tr>
+            <tr>
+              <td>COVID-19 Cover</td>
+              <td><span class="check">✔</span></td>
+              <td><span class="check">✔</span></td>
+              <td><span class="check">✔</span></td>
+            </tr>
+            <tr>
+              <td>Baggage Loss/Delay</td>
+              <td><span class="check">✔</span></td>
+              <td><span class="check">✔</span></td>
+              <td><span class="check">✔</span></td>
+            </tr>
+            <tr>
+              <td>Emergency Evacuation</td>
+              <td><span class="check">✔</span></td>
+              <td><span class="check">✔</span></td>
+              <td><span class="cross">✘</span></td>
+            </tr>
+            <tr class="tfoot-row">
+              <td></td>
+              <td><button class="select-plan-btn">Select Gold</button></td>
+              <td><button class="select-plan-btn">Select Silver</button></td>
+              <td><button class="select-plan-btn">Select Bronze</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Soft lock for non-filled state — remove once form is filled -->
+        <div class="lock-msg">
+          <div class="lock-inner">
+            <div class="lock-icon">🔓</div>
+            <p>Enter your trip details above to unlock exact pricing &amp; purchase.</p>
+            <button class="unlock-btn" onclick="document.querySelector('.quote-form').scrollIntoView({behavior:'smooth'})">
+              ↑ Get My Exact Quote
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Annotation panel -->
+    <div class="annotations">
+      <h4>📌 Design Notes for Dev Handoff</h4>
+      <div class="ann-grid">
+        <div class="ann-item">
+          <strong>Nudge Banner</strong>
+          Appears only when user arrives via the "View &amp; Compare Plans" CTA (pass a URL param e.g. <code>?ref=cta-compare</code>). Dismissable. Sticky to top of comparison section on scroll.
+        </div>
+        <div class="ann-item">
+          <strong>Soft Lock Overlay</strong>
+          Shown when form is NOT yet filled. Table rows are visible but "Select Plan" buttons are disabled. Clicking overlay CTA smooth-scrolls user back up to the quote form.
+        </div>
+        <div class="ann-item">
+          <strong>Unlock Trigger</strong>
+          Once user submits the quote form, overlay disappears, real pricing populates, and "Select Plan" buttons activate. No page reload needed — JS state toggle.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="spacer"></div>
+
+<script>
+  // Countdown timer — 326 days from page load as demo
+  const end = new Date();
+  end.setDate(end.getDate() + 326);
+  end.setHours(end.getHours() + 9);
+  end.setMinutes(end.getMinutes() + 11);
+
+  function updateTimer() {
+    const now = new Date();
+    const diff = end - now;
+    if (diff <= 0) { document.getElementById('promoTimer').textContent = 'Expired'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000).toString().padStart(2,'0');
+    const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2,'0');
+    document.getElementById('promoTimer').textContent = `${d}d : ${h}h : ${m}m`;
+  }
+  updateTimer();
+  setInterval(updateTimer, 30000);
+</script>
+</body>
+</html>
