@@ -1,1066 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Starr SG – User Journey Flowchart</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Starr SG – Site Navigation Flowchart</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-  :root {
-    --navy:       #0d2b5e;
-    --navy-dark:  #071a3e;
-    --navy-mid:   #1a3a6e;
-    --gold:       #f5a623;
-    --gold-light: #ffd27a;
-    --green:      #22c55e;
-    --red:        #ef4444;
-    --amber:      #f59e0b;
-    --white:      #ffffff;
-    --offwhite:   #f4f7fc;
-    --muted:      #6b7a99;
-    --border:     #d0daf0;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #0a1628;
-    color: var(--white);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ── HEADER ── */
-  .header {
-    background: linear-gradient(135deg, #071a3e 0%, #0d2b5e 100%);
-    border-bottom: 1px solid rgba(245,166,35,0.2);
-    padding: 28px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .header-left h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--white);
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-
-  .header-left p {
-    font-size: 12px;
-    color: #7a9abf;
-    letter-spacing: 0.04em;
-  }
-
-  .header-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.04em;
-  }
-
-  /* ── LEGEND ── */
-  .legend {
-    display: flex;
-    gap: 20px;
-    padding: 16px 48px;
-    background: rgba(255,255,255,0.03);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: #8aaed4;
-  }
-
-  .legend-dot {
-    width: 12px; height: 12px;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
-
-  /* ── CANVAS ── */
-  .canvas {
-    padding: 48px 40px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  /* ── PHASE LABELS ── */
-  .phases {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 0;
-  }
-
-  .phase-labels {
-    display: flex;
-    flex-direction: column;
-    padding-top: 8px;
-  }
-
-  .phase-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 16px 0 0;
-    position: relative;
-  }
-
-  .phase-label .pl-text {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: #4a6890;
-    line-height: 1.3;
-    text-align: right;
-    flex: 1;
-  }
-
-  .phase-label .pl-line {
-    width: 2px;
-    background: rgba(255,255,255,0.06);
-    flex-shrink: 0;
-  }
-
-  /* ── FLOW GRID ── */
-  .flow {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding-left: 24px;
-    position: relative;
-  }
-
-  /* ── ROW (horizontal group of nodes) ── */
-  .flow-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 0;
-    position: relative;
-    padding: 16px 0;
-  }
-
-  /* ── NODE ── */
-  .node {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 140px;
-    flex: 1;
-    cursor: default;
-  }
-
-  .node-box {
-    border-radius: 12px;
-    padding: 14px 16px 12px;
-    text-align: center;
-    width: 130px;
-    position: relative;
-    transition: transform 0.18s, box-shadow 0.18s;
-    border: 1.5px solid transparent;
-  }
-
-  .node-box:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
-  }
-
-  /* Node types */
-  .node-box.start {
-    background: linear-gradient(135deg, var(--navy-mid), #1e4a9a);
-    border-color: rgba(245,166,35,0.4);
-    box-shadow: 0 4px 20px rgba(13,43,94,0.6);
-  }
-
-  .node-box.page {
-    background: linear-gradient(135deg, #0f2d5c, #1a3a6e);
-    border-color: rgba(255,255,255,0.1);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  }
-
-  .node-box.action {
-    background: linear-gradient(135deg, #1a3a6e, #0f2d5c);
-    border-color: rgba(245,166,35,0.25);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-  }
-
-  .node-box.decision {
-    background: linear-gradient(135deg, #2a1a0a, #3d2710);
-    border-color: rgba(245,166,35,0.5);
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(245,166,35,0.15);
-  }
-
-  .node-box.new-ux {
-    background: linear-gradient(135deg, #0a2d1a, #0f3d22);
-    border-color: rgba(34,197,94,0.5);
-    box-shadow: 0 4px 20px rgba(34,197,94,0.15);
-  }
-
-  .node-box.success {
-    background: linear-gradient(135deg, #052e16, #065f46);
-    border-color: rgba(34,197,94,0.6);
-    box-shadow: 0 4px 24px rgba(34,197,94,0.2);
-  }
-
-  .node-box.exit {
-    background: linear-gradient(135deg, #1a0a0a, #2d1111);
-    border-color: rgba(239,68,68,0.4);
-    box-shadow: 0 4px 16px rgba(239,68,68,0.1);
-  }
-
-  .node-box.info {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.08);
-    border-style: dashed;
-    box-shadow: none;
-  }
-
-  /* Node icon */
-  .node-icon {
-    font-size: 20px;
-    margin-bottom: 7px;
-    display: block;
-    line-height: 1;
-  }
-
-  /* Node label */
-  .node-label {
-    font-size: 11.5px;
-    font-weight: 600;
-    line-height: 1.35;
-    color: var(--white);
-  }
-  .node-box.info .node-label { color: #5a7aaa; }
-
-  /* Node sub */
-  .node-sub {
-    font-size: 9.5px;
-    color: #7a9abf;
-    margin-top: 4px;
-    line-height: 1.4;
-    font-weight: 400;
-  }
-  .node-box.decision .node-sub { color: #c4922a; }
-  .node-box.new-ux .node-sub { color: #5dbf7a; }
-  .node-box.success .node-sub { color: #4ade80; }
-  .node-box.exit .node-sub { color: #f87171; }
-
-  /* NEW badge */
-  .node-badge {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    background: var(--green);
-    color: white;
-    font-size: 8.5px;
-    font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 20px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .node-badge.fix { background: var(--amber); color: #1a0a00; }
-
-  /* ── CONNECTORS ── */
-
-  /* Vertical connector below a node */
-  .conn-v {
-    width: 2px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.06));
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .conn-v::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid rgba(255,255,255,0.2);
-  }
-
-  /* Horizontal connector between nodes in a row */
-  .conn-h {
-    flex: 1;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-    align-self: center;
-    position: relative;
-    min-width: 20px;
-  }
-
-  .conn-h::after {
-    content: '';
-    position: absolute;
-    right: -5px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 6px solid rgba(255,255,255,0.18);
-  }
-
-  /* Gold connector for new UX path */
-  .conn-h.gold {
-    background: linear-gradient(90deg, rgba(245,166,35,0.5), rgba(245,166,35,0.2));
-  }
-  .conn-h.gold::after { border-left-color: rgba(245,166,35,0.6); }
-
-  .conn-v.gold {
-    background: linear-gradient(180deg, rgba(245,166,35,0.5), rgba(245,166,35,0.15));
-  }
-  .conn-v.gold::after { border-top-color: rgba(245,166,35,0.5); }
-
-  /* Green connector */
-  .conn-h.green {
-    background: linear-gradient(90deg, rgba(34,197,94,0.5), rgba(34,197,94,0.2));
-  }
-  .conn-h.green::after { border-left-color: rgba(34,197,94,0.6); }
-
-  .conn-v.green {
-    background: linear-gradient(180deg, rgba(34,197,94,0.5), rgba(34,197,94,0.15));
-  }
-  .conn-v.green::after { border-top-color: rgba(34,197,94,0.5); }
-
-  /* Red connector */
-  .conn-v.red {
-    background: linear-gradient(180deg, rgba(239,68,68,0.4), rgba(239,68,68,0.1));
-  }
-  .conn-v.red::after { border-top-color: rgba(239,68,68,0.4); }
-
-  /* ── DECISION BRANCH LABELS ── */
-  .branch-label {
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 2px 8px;
-    border-radius: 10px;
-    position: absolute;
-    white-space: nowrap;
-  }
-  .branch-label.yes { background: rgba(34,197,94,0.15); color: #4ade80; }
-  .branch-label.no  { background: rgba(239,68,68,0.15);  color: #f87171; }
-  .branch-label.skip { background: rgba(245,166,35,0.15); color: var(--gold); }
-
-  /* ── SECTION SEPARATOR ── */
-  .section-sep {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin: 8px 0 8px 24px;
-  }
-
-  .section-sep .sep-line {
-    flex: 1;
-    height: 1px;
-    background: rgba(255,255,255,0.06);
-  }
-
-  .section-sep .sep-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #3a5278;
-    white-space: nowrap;
-  }
-
-  /* ── COMPARISON BOXES ── */
-  .compare-strip {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 32px 24px 0;
-    padding: 24px;
-    background: rgba(255,255,255,0.02);
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .compare-box {
-    border-radius: 12px;
-    padding: 18px;
-  }
-
-  .compare-box.before {
-    background: rgba(239,68,68,0.06);
-    border: 1px solid rgba(239,68,68,0.2);
-  }
-
-  .compare-box.after {
-    background: rgba(34,197,94,0.06);
-    border: 1px solid rgba(34,197,94,0.2);
-  }
-
-  .compare-box h3 {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
-  .compare-box.before h3 { color: #f87171; }
-  .compare-box.after h3 { color: #4ade80; }
-
-  .compare-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .compare-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 11.5px;
-    line-height: 1.4;
-    color: #8aaed4;
-  }
-
-  .compare-step .cs-num {
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px;
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-  .compare-box.before .cs-num { background: rgba(239,68,68,0.2); color: #f87171; }
-  .compare-box.after .cs-num  { background: rgba(34,197,94,0.2);  color: #4ade80; }
-
-  .compare-step.highlight { color: var(--white); }
-
-  /* ── MAIN FLOWCHART CONTAINER ── */
-  .chart-wrap {
-    padding: 24px;
-    background: rgba(255,255,255,0.015);
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.05);
-    overflow-x: auto;
-  }
-
-  /* ── FLOW COLUMNS ── */
-  .col-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 900px;
-  }
-
-  /* Row layouts */
-  .row-single {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 4px 0;
-  }
-
-  .row-multi {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-    padding: 4px 0;
-    position: relative;
-  }
-
-  /* Connector spacing */
-  .vc { display: flex; justify-content: center; width: 100%; }
-  .vc-line {
-    width: 2px;
-    height: 36px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.06) 100%);
-    position: relative;
-  }
-  .vc-line::after {
-    content: '';
-    position: absolute;
-    bottom: -5px; left: 50%;
-    transform: translateX(-50%);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 7px solid rgba(255,255,255,0.18);
-  }
-  .vc-line.gold-c {
-    background: linear-gradient(180deg, rgba(245,166,35,0.5), rgba(245,166,35,0.15));
-  }
-  .vc-line.gold-c::after { border-top-color: rgba(245,166,35,0.5); }
-  .vc-line.green-c {
-    background: linear-gradient(180deg, rgba(34,197,94,0.5), rgba(34,197,94,0.15));
-  }
-  .vc-line.green-c::after { border-top-color: rgba(34,197,94,0.5); }
-  .vc-line.red-c {
-    background: linear-gradient(180deg, rgba(239,68,68,0.4), rgba(239,68,68,0.1));
-  }
-  .vc-line.red-c::after { border-top-color: rgba(239,68,68,0.4); }
-
-  /* Horizontal fork line */
-  .h-fork {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    position: relative;
-  }
-
-  .h-fork-line {
-    height: 2px;
-    background: rgba(255,255,255,0.1);
-    flex: 1;
-    max-width: 200px;
-  }
-  .h-fork-line.gold-c { background: rgba(245,166,35,0.35); }
-  .h-fork-line.green-c { background: rgba(34,197,94,0.35); }
-  .h-fork-line.red-c { background: rgba(239,68,68,0.3); }
-
-  /* Branch label on fork */
-  .fork-label {
-    font-size: 9px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    padding: 2px 8px;
-    border-radius: 10px;
-    margin: 0 6px;
-  }
-  .fork-label.yes   { background: rgba(34,197,94,0.15); color: #4ade80; }
-  .fork-label.no    { background: rgba(239,68,68,0.15);  color: #f87171; }
-  .fork-label.new   { background: rgba(245,166,35,0.15); color: var(--gold); }
-  .fork-label.skips { background: rgba(245,166,35,0.12); color: var(--gold-light); }
-
-  /* ── NODE SIZES ── */
-  .node-box.sm { width: 115px; padding: 12px 12px 10px; }
-  .node-box.lg { width: 155px; }
-
-  /* Tooltip on hover */
-  .node-box[data-tip]:hover::before {
-    content: attr(data-tip);
-    position: absolute;
-    bottom: calc(100% + 10px);
-    left: 50%;
-    transform: translateX(-50%);
-    background: #071a3e;
-    border: 1px solid rgba(245,166,35,0.3);
-    color: #c8d8f0;
-    font-size: 10.5px;
-    line-height: 1.5;
-    padding: 8px 12px;
-    border-radius: 8px;
-    width: 200px;
-    z-index: 100;
-    pointer-events: none;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-
-  /* ── PHASE BANDS (background stripes) ── */
-  .phase-band {
-    border-radius: 12px;
-    padding: 6px 0 2px;
-    margin-bottom: 4px;
-    position: relative;
-  }
-
-  .phase-band-label {
-    font-size: 9.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    padding: 4px 14px;
-    margin-bottom: 8px;
-    display: inline-block;
-    border-radius: 0 6px 6px 0;
-  }
-
-  /* ── ANIMATE IN ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .node-box {
-    animation: fadeUp 0.5s ease both;
-  }
-
-  .node:nth-child(1) .node-box { animation-delay: 0.05s; }
-  .node:nth-child(2) .node-box { animation-delay: 0.10s; }
-  .node:nth-child(3) .node-box { animation-delay: 0.15s; }
-  .node:nth-child(4) .node-box { animation-delay: 0.20s; }
-  .node:nth-child(5) .node-box { animation-delay: 0.25s; }
-
-  /* ── FOOTER ── */
-  .doc-footer {
-    text-align: center;
-    padding: 28px;
-    font-size: 11px;
-    color: #2a4060;
-    letter-spacing: 0.06em;
-    border-top: 1px solid rgba(255,255,255,0.04);
-    margin-top: 32px;
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#071839;
+  color:#fff;
+  min-height:100vh;
+  padding:0 0 80px;
+}
+
+/* ── TOP BAR ── */
+.topbar{
+  background:#050f24;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:10px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.topbar-logo{font-size:13px;font-weight:800;color:#f5a623;letter-spacing:.06em;}
+.topbar-title{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
+.topbar-subtitle{font-size:11px;color:rgba(255,255,255,.25);}
+
+/* ── LEGEND ── */
+.legend{
+  display:flex;flex-wrap:wrap;gap:10px 20px;
+  padding:18px 40px;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:#060e22;
+}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.45);font-weight:500;}
+.legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.ld-page   {background:#1e3a6e;border:1px solid #2d5499;}
+.ld-new    {background:#1a4a2e;border:1px solid #27713f;}
+.ld-decision{background:#3d2a00;border:1px solid #7a5400;}
+.ld-success{background:#0f3d2e;border:1px solid #1d7a5a;}
+.ld-exit   {background:#3d0f0f;border:1px solid #7a1f1f;}
+.ld-promo  {background:#3d2800;border:1px solid #f5a623;}
+
+/* ── FLOW CANVAS ── */
+.flow{
+  max-width:720px;
+  margin:0 auto;
+  padding:48px 24px 0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+}
+
+/* ── PHASE HEADER ── */
+.phase{
+  width:100%;
+  display:flex;align-items:center;gap:12px;
+  padding:10px 20px;
+  border-radius:8px;
+  margin-bottom:24px;
+  margin-top:16px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+}
+.phase:first-child{margin-top:0;}
+.phase-icon{font-size:16px;flex-shrink:0;}
+.phase-label{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;}
+.phase-desc{font-size:11px;color:rgba(255,255,255,.3);margin-left:auto;}
+
+/* ── NODE ── */
+.node{
+  width:100%;
+  max-width:520px;
+  border-radius:10px;
+  padding:14px 18px;
+  position:relative;
+  display:flex;align-items:flex-start;gap:14px;
+  transition:transform .15s,box-shadow .15s;
+  cursor:default;
+}
+.node:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,.3);}
+
+/* node types */
+.node-page{
+  background:#0e2145;
+  border:1px solid #1e3d7a;
+}
+.node-new{
+  background:#0a2318;
+  border:1px solid #1d5c30;
+}
+.node-decision{
+  background:#211600;
+  border:1px solid #5c3d00;
+}
+.node-success{
+  background:#062a1e;
+  border:1px solid #0e5c3a;
+}
+.node-exit{
+  background:#1f0808;
+  border:1px solid #5c1515;
+}
+.node-promo{
+  background:#1f1000;
+  border:1px solid rgba(245,166,35,.4);
+}
+
+/* node icon */
+.node-icon{
+  font-size:18px;flex-shrink:0;
+  width:36px;height:36px;
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.05);
+}
+
+/* node content */
+.node-body{flex:1;}
+.node-type-label{
+  font-size:9.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:3px;
+}
+.node-page    .node-type-label{color:#4a7fd4;}
+.node-new     .node-type-label{color:#3cb87a;}
+.node-decision .node-type-label{color:#c98a00;}
+.node-success .node-type-label{color:#27c48a;}
+.node-exit    .node-type-label{color:#e05555;}
+.node-promo   .node-type-label{color:#f5a623;}
+
+.node-title{font-size:14px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:2px;}
+.node-sub{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* NEW badge */
+.new-badge{
+  position:absolute;top:10px;right:12px;
+  background:#1d5c30;color:#3cb87a;
+  font-size:9px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:2px 8px;border-radius:3px;
+  border:1px solid #2d8a48;
+}
+
+/* ── CONNECTOR ── */
+.connector{
+  display:flex;flex-direction:column;align-items:center;
+  gap:0;margin:4px 0;
+}
+.conn-line{
+  width:2px;height:28px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.12),rgba(255,255,255,.06));
+}
+.conn-arrow{
+  width:0;height:0;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+  border-top:7px solid rgba(255,255,255,.18);
+}
+
+/* ── DECISION BRANCHES ── */
+.branches{
+  width:100%;max-width:520px;
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin:4px 0;
+}
+.branch{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+}
+.branch-label{
+  font-size:10px;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 12px;border-radius:20px;
+}
+.branch-no{background:rgba(229,62,62,.12);color:#e05555;border:1px solid rgba(229,62,62,.2);}
+.branch-yes{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
+.branch-skip{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
+.branch-apply{background:rgba(245,166,35,.12);color:#f5a623;border:1px solid rgba(245,166,35,.2);}
+.branch-fail{background:rgba(229,62,62,.12);color:#e05555;border:1px solid rgba(229,62,62,.2);}
+.branch-pass{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
+.branch-line{
+  width:2px;height:20px;
+  background:rgba(255,255,255,.08);
+}
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div class="header-left">
-    <h1>User Journey Flowchart</h1>
-    <p>Travel Insurance · New UX · Homepage → Policy Issuance</p>
-  </div>
-  <div class="header-logo">★ STARR SG</div>
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="topbar-logo">★ STARR SG</span>
+  <span class="topbar-title">Site Navigation Flowchart</span>
+  <span class="topbar-subtitle">Full Site · All Pages & Flows</span>
 </div>
 
-<!-- Legend -->
+<!-- LEGEND -->
 <div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:#1a3a6e;border:1px solid rgba(255,255,255,0.15);"></div>Page / Screen</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#3d2710;border:1px solid rgba(245,166,35,0.4);"></div>Decision Point</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#0f3d22;border:1px solid rgba(34,197,94,0.4);"></div>New UX Component</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#065f46;border:1px solid rgba(34,197,94,0.5);"></div>Success State</div>
-  <div class="legend-item"><div class="legend-dot" style="background:#1a0a0a;border:1px solid rgba(239,68,68,0.25);"></div>Exit / Drop-off</div>
+  <div class="legend-item"><div class="legend-dot ld-page"></div>Page / Screen</div>
+  <div class="legend-item"><div class="legend-dot ld-new"></div>New UX Component</div>
+  <div class="legend-item"><div class="legend-dot ld-decision"></div>Decision Point</div>
+  <div class="legend-item"><div class="legend-dot ld-success"></div>Success State</div>
+  <div class="legend-item"><div class="legend-dot ld-exit"></div>Exit / Drop-off</div>
+  <div class="legend-item"><div class="legend-dot ld-promo"></div>Promotion</div>
 </div>
 
-<!-- Main canvas -->
-<div class="canvas">
-  <div class="chart-wrap">
-    <div class="col-wrap">
+<!-- FLOW -->
+<div class="flow">
 
-      <!-- ══ PHASE 1: HOMEPAGE ══ -->
-      <div class="phase-band-label" style="background:rgba(13,43,94,0.6);color:#5a8abf;">📍 Phase 1 — Homepage</div>
+  <!-- ════════════════════════════
+       PHASE 1 — ENTRY
+  ═══════════════════════════════ -->
+  <div class="phase">
+    <span class="phase-icon">🌐</span>
+    <span class="phase-label">Phase 1 — Entry</span>
+    <span class="phase-desc">Homepage</span>
+  </div>
 
-      <!-- Node: Homepage -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box start" data-tip="User lands on the Starr SG homepage — sees hero section, support cards, and the CTA button.">
-            <span class="node-icon">🏠</span>
-            <div class="node-label">Homepage</div>
-            <div class="node-sub">User lands on page</div>
-          </div>
+  <div class="node node-page">
+    <div class="node-icon">🏠</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Homepage</div>
+      <div class="node-sub">User lands on page — hero, quote form, sections below</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-promo">
+    <div class="node-icon">🏷️</div>
+    <div class="node-body">
+      <div class="node-type-label">Promotion</div>
+      <div class="node-title">Promo banner</div>
+      <div class="node-sub">STARRTRIP · Flash Sale up to 65% OFF · auto-applied, no code needed</div>
+    </div>
+    <div class="new-badge">New</div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-new">
+    <div class="node-icon">✨</div>
+    <div class="node-body">
+      <div class="node-type-label">New UX Component</div>
+      <div class="node-title">Exclusive Deals section</div>
+      <div class="node-sub">Inserted between hero and quote form · Seasonal discounts · auto-applied on click</div>
+    </div>
+    <div class="new-badge">New</div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">📋</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Quote form</div>
+      <div class="node-sub">Plan type · Destination · Traveller · Departure / Return · Promo code</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">👆</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">"Get My Discounted Quote →" CTA</div>
+      <div class="node-sub">Smooth-scrolls to quote form · discount auto-applied on arrival</div>
+    </div>
+    <div class="new-badge">New</div>
+  </div>
+
+
+  <!-- ════════════════════════════
+       PHASE 2 — TRAVEL INSURANCE
+  ═══════════════════════════════ -->
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="phase">
+    <span class="phase-icon">📋</span>
+    <span class="phase-label">Phase 2 — Travel Insurance Page</span>
+    <span class="phase-desc">Plan browse & compare</span>
+  </div>
+
+  <div class="node node-page">
+    <div class="node-icon">🛡️</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Travel Insurance page</div>
+      <div class="node-sub">Lands at comparison section · plan table visible immediately</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-new">
+    <div class="node-icon">🏷️</div>
+    <div class="node-body">
+      <div class="node-type-label">New UX Component</div>
+      <div class="node-title">Dual promo banner</div>
+      <div class="node-sub">STARRTRIP (all plans · auto) + Flash Campaign (Individual/Group · Bronze 65% · Silver 65% · Gold 60%) · live countdown</div>
+    </div>
+    <div class="new-badge">New</div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-new">
+    <div class="node-icon">💛</div>
+    <div class="node-body">
+      <div class="node-type-label">New UX Component</div>
+      <div class="node-title">Nudge banner</div>
+      <div class="node-sub">"Prices below are indicative — enter your trip details to unlock your exact quote"</div>
+    </div>
+    <div class="new-badge">New</div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">📊</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Plan comparison table</div>
+      <div class="node-sub">Gold · Silver · Bronze · indicative pricing · soft-locked · Select Plan buttons inactive</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-decision">
+    <div class="node-icon">🤔</div>
+    <div class="node-body">
+      <div class="node-type-label">Decision Point</div>
+      <div class="node-title">Interested in a plan?</div>
+      <div class="node-sub">User decides to proceed or leave</div>
+    </div>
+  </div>
+
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-label branch-no">No — not yet</div>
+      <div class="branch-line"></div>
+      <div class="node node-exit" style="max-width:100%;">
+        <div class="node-icon">🚪</div>
+        <div class="node-body">
+          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-title">Leaves page</div>
         </div>
       </div>
-
-      <div class="vc"><div class="vc-line"></div></div>
-
-      <!-- Node: Scrolls to How We Support You -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box page">
-            <span class="node-icon">👁️</span>
-            <div class="node-label">"How We Support You"</div>
-            <div class="node-sub">User sees 3 support cards + CTA</div>
-          </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-yes">Yes — wants to proceed</div>
+      <div class="branch-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">📝</div>
+        <div class="node-body">
+          <div class="node-type-label">Page / Screen</div>
+          <div class="node-title">Scrolls to quote form</div>
+          <div class="node-sub">Via nudge CTA or manually</div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="vc"><div class="vc-line"></div></div>
 
-      <!-- Node: Sees CTA -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box page">
-            <span class="node-icon">👆</span>
-            <div class="node-label">Sees CTA Button</div>
-            <div class="node-sub">"View &amp; Compare Plans →"</div>
-          </div>
+  <!-- ════════════════════════════
+       PHASE 3 — QUOTE FORM
+  ═══════════════════════════════ -->
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="phase">
+    <span class="phase-icon">📝</span>
+    <span class="phase-label">Phase 3 — Quote Form</span>
+    <span class="phase-desc">Trip details & validation</span>
+  </div>
+
+  <div class="node node-page">
+    <div class="node-icon">📋</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Fills quote form</div>
+      <div class="node-sub">Plan type · Destination · Traveller · Departure / Return · No. of children</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-decision">
+    <div class="node-icon">✔️</div>
+    <div class="node-body">
+      <div class="node-type-label">Decision Point</div>
+      <div class="node-title">Form complete?</div>
+      <div class="node-sub">Validation check on all required fields</div>
+    </div>
+  </div>
+
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-label branch-no">Incomplete</div>
+      <div class="branch-line"></div>
+      <div class="node node-exit" style="max-width:100%;">
+        <div class="node-icon">⚠️</div>
+        <div class="node-body">
+          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-title">Inline validation errors</div>
+          <div class="node-sub">Returns to form</div>
         </div>
       </div>
-
-      <div class="vc"><div class="vc-line gold-c"></div></div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box new-ux" data-tip="Revised CTA — honest label with subtext 'Browse Bronze, Silver & Gold — no form required to start'. Sets clear expectation before the tap.">
-            <div class="node-badge">New</div>
-            <span class="node-icon">✅</span>
-            <div class="node-label">"View &amp; Compare Plans →"</div>
-            <div class="node-sub">Subtext: no form required to start</div>
-          </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-yes">Complete</div>
+      <div class="branch-line"></div>
+      <div class="node node-success" style="max-width:100%;">
+        <div class="node-icon">🔓</div>
+        <div class="node-body">
+          <div class="node-type-label">Success State</div>
+          <div class="node-title">Exact prices unlock</div>
+          <div class="node-sub">Soft lock removed · Select Plan buttons active</div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="vc"><div class="vc-line gold-c"></div></div>
 
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box new-ux">
-            <span class="node-icon">⬇️</span>
-            <div class="node-label">Navigates to Travel Insurance Page</div>
-            <div class="node-sub">Smooth-scrolls to comparison section</div>
-          </div>
+  <!-- ════════════════════════════
+       PHASE 4 — PLAN SELECTION
+  ═══════════════════════════════ -->
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="phase">
+    <span class="phase-icon">💳</span>
+    <span class="phase-label">Phase 4 — Plan Selection & Purchase</span>
+    <span class="phase-desc">Checkout flow</span>
+  </div>
+
+  <div class="node node-page">
+    <div class="node-icon">🎯</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Selects a plan</div>
+      <div class="node-sub">Gold (from S$40) · Silver (from S$30) · Bronze (from S$19)</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-decision">
+    <div class="node-icon">🏷️</div>
+    <div class="node-body">
+      <div class="node-type-label">Decision Point</div>
+      <div class="node-title">Discount applied?</div>
+      <div class="node-sub">STARRTRIP and Flash Campaign are auto-applied on click</div>
+    </div>
+  </div>
+
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-label branch-skip">No promo eligible</div>
+      <div class="branch-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">➡️</div>
+        <div class="node-body">
+          <div class="node-type-label">Page / Screen</div>
+          <div class="node-title">Full price checkout</div>
         </div>
       </div>
-
-      <!-- ══ PHASE 2: TRAVEL INSURANCE PAGE ══ -->
-      <div class="vc"><div class="vc-line" style="height:12px;"></div></div>
-      <div class="phase-band-label" style="background:rgba(13,43,94,0.6);color:#5a8abf;margin-top:8px;">📋 Phase 2 — Travel Insurance Page</div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box page" data-tip="Travel Insurance page — contains the quote form, promo banner, nudge banner, and comparison section.">
-            <span class="node-icon">🛡️</span>
-            <div class="node-label">Travel Insurance Page</div>
-            <div class="node-sub">Lands at comparison section</div>
-          </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-apply">Auto-applied</div>
+      <div class="branch-line"></div>
+      <div class="node node-success" style="max-width:100%;">
+        <div class="node-icon">💰</div>
+        <div class="node-body">
+          <div class="node-type-label">Success State</div>
+          <div class="node-title">Discount applied</div>
+          <div class="node-sub">Price updates instantly</div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="vc"><div class="vc-line gold-c"></div></div>
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
-      <!-- Promo banner -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box new-ux" data-tip="Promo banner shows code TSBRONZE for 7% OFF with live countdown — creates urgency without interrupting browsing.">
-            <div class="node-badge">New</div>
-            <span class="node-icon">🏷️</span>
-            <div class="node-label">Sees Promo Banner</div>
-            <div class="node-sub">TSBRONZE · 7% OFF · countdown</div>
-          </div>
+  <div class="node node-page">
+    <div class="node-icon">💳</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Checkout & payment</div>
+      <div class="node-sub">Visa · Mastercard · PayNow</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-decision">
+    <div class="node-icon">🔐</div>
+    <div class="node-body">
+      <div class="node-type-label">Decision Point</div>
+      <div class="node-title">Payment successful?</div>
+      <div class="node-sub">Payment gateway check</div>
+    </div>
+  </div>
+
+  <div class="branches">
+    <div class="branch">
+      <div class="branch-label branch-fail">Failed</div>
+      <div class="branch-line"></div>
+      <div class="node node-exit" style="max-width:100%;">
+        <div class="node-icon">❌</div>
+        <div class="node-body">
+          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-title">Payment error</div>
+          <div class="node-sub">Retry prompt shown</div>
         </div>
       </div>
-
-      <div class="vc"><div class="vc-line gold-c"></div></div>
-
-      <!-- Nudge banner -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box new-ux" data-tip="Nudge banner gently tells user prices are indicative and prompts them to fill the quote form for exact pricing. Dismissable.">
-            <div class="node-badge">New</div>
-            <span class="node-icon">💛</span>
-            <div class="node-label">Nudge Banner</div>
-            <div class="node-sub">"Prices indicative — enter trip details"</div>
-          </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-pass">Success</div>
+      <div class="branch-line"></div>
+      <div class="node node-success" style="max-width:100%;">
+        <div class="node-icon">✅</div>
+        <div class="node-body">
+          <div class="node-type-label">Success State</div>
+          <div class="node-title">Payment confirmed</div>
+          <div class="node-sub">Policy being issued</div>
         </div>
       </div>
-
-      <div class="vc"><div class="vc-line gold-c"></div></div>
-
-      <!-- Sees comparison -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box new-ux lg" data-tip="Desktop: comparison table. Mobile: accordion with Gold open by default. All plans visible with indicative pricing — no form needed to browse.">
-            <div class="node-badge">New</div>
-            <span class="node-icon">📊</span>
-            <div class="node-label">Browses Plan Comparison</div>
-            <div class="node-sub">Desktop: table · Mobile: accordion<br/>Gold open by default</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vc"><div class="vc-line"></div></div>
-
-      <!-- Decision: interested? -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box decision">
-            <span class="node-icon">🤔</span>
-            <div class="node-label">Interested in a plan?</div>
-            <div class="node-sub">Decision point</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fork: yes / no -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div class="h-fork-line red-c" style="max-width:200px;"></div>
-        <span class="fork-label no">No — not yet</span>
-        <div style="width:40px;"></div>
-        <span class="fork-label yes">Yes — wants to proceed</span>
-        <div class="h-fork-line green-c" style="max-width:200px;"></div>
-      </div>
-
-      <div class="row-multi" style="gap:40px;align-items:flex-start;">
-
-        <!-- No path -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box exit sm">
-              <span class="node-icon">🚪</span>
-              <div class="node-label">Leaves page</div>
-              <div class="node-sub">Exit / drop-off</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Yes path -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box action sm">
-              <span class="node-icon">📝</span>
-              <div class="node-label">Scrolls to Quote Form</div>
-              <div class="node-sub">Via nudge CTA or manually</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Merge back to form -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div style="flex:1;"></div>
-        <div class="h-fork-line green-c" style="max-width:220px;transform:scaleX(-1);"></div>
-        <div style="width:40px;"></div>
-      </div>
-
-      <!-- ══ PHASE 3: QUOTE FORM ══ -->
-      <div class="vc"><div class="vc-line" style="height:12px;"></div></div>
-      <div class="phase-band-label" style="background:rgba(13,43,94,0.6);color:#5a8abf;margin-top:8px;">📝 Phase 3 — Quote Form</div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box page">
-            <span class="node-icon">📋</span>
-            <div class="node-label">Fills Quote Form</div>
-            <div class="node-sub">Trip type · Destination · Dates · Travellers</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vc"><div class="vc-line"></div></div>
-
-      <!-- Decision: form complete? -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box decision" data-tip="Form validation — user must fill all required fields before quote is generated.">
-            <span class="node-icon">✔️</span>
-            <div class="node-label">Form complete?</div>
-            <div class="node-sub">Validation check</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fork: complete / incomplete -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div class="h-fork-line red-c" style="max-width:200px;"></div>
-        <span class="fork-label no">Incomplete</span>
-        <div style="width:40px;"></div>
-        <span class="fork-label yes">Complete</span>
-        <div class="h-fork-line green-c" style="max-width:200px;"></div>
-      </div>
-
-      <div class="row-multi" style="gap:40px;align-items:flex-start;">
-
-        <!-- Incomplete -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box exit sm">
-              <span class="node-icon">⚠️</span>
-              <div class="node-label">Inline validation errors</div>
-              <div class="node-sub">Returns to form to complete</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Complete -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box success sm" data-tip="Exact pricing unlocks in the comparison — soft lock overlay disappears, Select Plan buttons activate.">
-              <span class="node-icon">🔓</span>
-              <div class="node-label">Exact prices unlock</div>
-              <div class="node-sub">Soft lock removed · Buttons active</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ══ PHASE 4: PLAN SELECTION ══ -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div style="flex:1;"></div>
-        <div class="h-fork-line green-c" style="max-width:220px;transform:scaleX(-1);"></div>
-        <div style="width:40px;"></div>
-      </div>
-
-      <div class="vc"><div class="vc-line" style="height:12px;"></div></div>
-      <div class="phase-band-label" style="background:rgba(13,43,94,0.6);color:#5a8abf;margin-top:8px;">💳 Phase 4 — Plan Selection & Purchase</div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box action">
-            <span class="node-icon">🎯</span>
-            <div class="node-label">Selects a Plan</div>
-            <div class="node-sub">Gold / Silver / Bronze</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vc"><div class="vc-line green-c"></div></div>
-
-      <!-- Decision: promo code? -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box decision">
-            <span class="node-icon">🏷️</span>
-            <div class="node-label">Apply promo code?</div>
-            <div class="node-sub">TSBRONZE — 7% OFF</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fork: yes/no promo -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div class="h-fork-line" style="max-width:180px;"></div>
-        <span class="fork-label no">Skip</span>
-        <div style="width:40px;"></div>
-        <span class="fork-label yes">Apply code</span>
-        <div class="h-fork-line gold-c" style="max-width:180px;"></div>
-      </div>
-
-      <div class="row-multi" style="gap:40px;align-items:flex-start;">
-
-        <!-- Skip promo -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box action sm">
-              <span class="node-icon">➡️</span>
-              <div class="node-label">Full price checkout</div>
-              <div class="node-sub">Proceeds without discount</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Apply promo -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box new-ux sm">
-              <div class="node-badge">Save 7%</div>
-              <span class="node-icon">💰</span>
-              <div class="node-label">Discount applied</div>
-              <div class="node-sub">Price updates in checkout</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Merge to checkout -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div class="h-fork-line green-c" style="max-width:220px;transform:scaleX(-1);"></div>
-        <div style="width:40px;"></div>
-        <div class="h-fork-line green-c" style="max-width:220px;"></div>
-      </div>
-
-      <div class="vc"><div class="vc-line green-c"></div></div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box action">
-            <span class="node-icon">💳</span>
-            <div class="node-label">Checkout & Payment</div>
-            <div class="node-sub">Visa · Mastercard · PayNow</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vc"><div class="vc-line green-c"></div></div>
-
-      <!-- Decision: payment success? -->
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box decision">
-            <span class="node-icon">🔐</span>
-            <div class="node-label">Payment successful?</div>
-            <div class="node-sub">Gateway check</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Fork: success/fail -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div class="h-fork-line red-c" style="max-width:190px;"></div>
-        <span class="fork-label no">Failed</span>
-        <div style="width:40px;"></div>
-        <span class="fork-label yes">Success</span>
-        <div class="h-fork-line green-c" style="max-width:190px;"></div>
-      </div>
-
-      <div class="row-multi" style="gap:40px;align-items:flex-start;">
-
-        <!-- Payment fail -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box exit sm">
-              <span class="node-icon">❌</span>
-              <div class="node-label">Payment error</div>
-              <div class="node-sub">Retry prompt shown</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Payment success -->
-        <div style="display:flex;flex-direction:column;align-items:center;flex:1;">
-          <div class="node">
-            <div class="node-box success sm">
-              <span class="node-icon">✅</span>
-              <div class="node-label">Payment confirmed</div>
-              <div class="node-sub">Policy being issued</div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ══ PHASE 5: POLICY ISSUANCE ══ -->
-      <div class="h-fork" style="margin:8px 0;">
-        <div style="flex:1;"></div>
-        <div class="h-fork-line green-c" style="max-width:220px;transform:scaleX(-1);"></div>
-        <div style="width:40px;"></div>
-      </div>
-
-      <div class="vc"><div class="vc-line" style="height:12px;"></div></div>
-      <div class="phase-band-label" style="background:rgba(6,95,70,0.4);color:#4ade80;margin-top:8px;">🎉 Phase 5 — Policy Issuance</div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box success">
-            <span class="node-icon">📧</span>
-            <div class="node-label">Policy issued instantly</div>
-            <div class="node-sub">PDF sent to email · Account updated</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="vc"><div class="vc-line green-c"></div></div>
-
-      <div class="row-single">
-        <div class="node">
-          <div class="node-box success lg">
-            <span class="node-icon">🌏</span>
-            <div class="node-label">User travels with coverage</div>
-            <div class="node-sub">Access to 24/7 emergency support · Claims portal available</div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /col-wrap -->
-  </div><!-- /chart-wrap -->
+    </div>
+  </div>
 
 
-</div><!-- /canvas -->
+  <!-- ════════════════════════════
+       PHASE 5 — POLICY ISSUANCE
+  ═══════════════════════════════ -->
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
-<div class="doc-footer">
-  Starr SG · Travel Insurance · UX Recommendation · CTA Journey Flowchart
+  <div class="phase">
+    <span class="phase-icon">🎉</span>
+    <span class="phase-label">Phase 5 — Policy Issuance</span>
+    <span class="phase-desc">Post-purchase</span>
+  </div>
+
+  <div class="node node-success">
+    <div class="node-icon">📧</div>
+    <div class="node-body">
+      <div class="node-type-label">Success State</div>
+      <div class="node-title">Policy issued instantly</div>
+      <div class="node-sub">PDF sent to email · Account updated</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">🏥</div>
+    <div class="node-body">
+      <div class="node-type-label">Page / Screen</div>
+      <div class="node-title">Claims portal</div>
+      <div class="node-sub">Submit claim · Confirmation email · Claim processed · 24/7 emergency support</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-success">
+    <div class="node-icon">🌏</div>
+    <div class="node-body">
+      <div class="node-type-label">Success State</div>
+      <div class="node-title">User travels with coverage</div>
+      <div class="node-sub">24/7 emergency support · Claims portal available · Policy documents accessible</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:40px 24px 0;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.08em;text-transform:uppercase;">
+  Starr SG · Travel Insurance · Site Navigation Flowchart · New UX
 </div>
 
 </body>
