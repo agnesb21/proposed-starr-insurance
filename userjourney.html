@@ -3,201 +3,97 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Starr SG – Site Navigation Flowchart</title>
+<title>Starr SG – User Journey Flowchart</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:#071839;
-  color:#fff;
-  min-height:100vh;
-  padding:0 0 80px;
-}
+body{font-family:'DM Sans',sans-serif;background:#071839;color:#fff;min-height:100vh;padding:0 0 80px;}
 
-/* ── TOP BAR ── */
-.topbar{
-  background:#050f24;
-  border-bottom:1px solid rgba(255,255,255,.07);
-  padding:10px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;
-}
+.topbar{background:#050f24;border-bottom:1px solid rgba(255,255,255,.07);padding:10px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .topbar-logo{font-size:13px;font-weight:800;color:#f5a623;letter-spacing:.06em;}
 .topbar-title{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
 .topbar-subtitle{font-size:11px;color:rgba(255,255,255,.25);}
 
-/* ── LEGEND ── */
-.legend{
-  display:flex;flex-wrap:wrap;gap:10px 20px;
-  padding:18px 40px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:#060e22;
-}
+.legend{display:flex;flex-wrap:wrap;gap:10px 20px;padding:14px 40px;border-bottom:1px solid rgba(255,255,255,.06);background:#060e22;}
 .legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,.45);font-weight:500;}
 .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
-.ld-page   {background:#1e3a6e;border:1px solid #2d5499;}
-.ld-new    {background:#1a4a2e;border:1px solid #27713f;}
+.ld-page{background:#1e3a6e;border:1px solid #2d5499;}
+.ld-new{background:#1a4a2e;border:1px solid #27713f;}
 .ld-decision{background:#3d2a00;border:1px solid #7a5400;}
 .ld-success{background:#0f3d2e;border:1px solid #1d7a5a;}
-.ld-exit   {background:#3d0f0f;border:1px solid #7a1f1f;}
-.ld-promo  {background:#3d2800;border:1px solid #f5a623;}
+.ld-exit{background:#3d0f0f;border:1px solid #7a1f1f;}
+.ld-promo{background:#3d2800;border:1px solid #f5a623;}
+.ld-condition{background:#1a1a4e;border:1px solid #3a3a9e;}
 
-/* ── FLOW CANVAS ── */
-.flow{
-  max-width:720px;
-  margin:0 auto;
-  padding:48px 24px 0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0;
-}
+.flow{max-width:720px;margin:0 auto;padding:40px 24px 0;display:flex;flex-direction:column;align-items:center;gap:0;}
 
-/* ── PHASE HEADER ── */
-.phase{
-  width:100%;
-  display:flex;align-items:center;gap:12px;
-  padding:10px 20px;
-  border-radius:8px;
-  margin-bottom:24px;
-  margin-top:16px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-}
+.phase{width:100%;display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:8px;margin-bottom:20px;margin-top:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);}
 .phase:first-child{margin-top:0;}
 .phase-icon{font-size:16px;flex-shrink:0;}
 .phase-label{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.08em;text-transform:uppercase;}
 .phase-desc{font-size:11px;color:rgba(255,255,255,.3);margin-left:auto;}
 
-/* ── NODE ── */
-.node{
-  width:100%;
-  max-width:520px;
-  border-radius:10px;
-  padding:14px 18px;
-  position:relative;
-  display:flex;align-items:flex-start;gap:14px;
-  transition:transform .15s,box-shadow .15s;
-  cursor:default;
-}
-.node:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,.3);}
+.node{width:100%;max-width:520px;border-radius:10px;padding:13px 17px;position:relative;display:flex;align-items:flex-start;gap:13px;transition:transform .15s;}
+.node:hover{transform:translateY(-1px);}
+.node-page{background:#0e2145;border:1px solid #1e3d7a;}
+.node-new{background:#0a2318;border:1px solid #1d5c30;}
+.node-decision{background:#211600;border:1px solid #5c3d00;}
+.node-success{background:#062a1e;border:1px solid #0e5c3a;}
+.node-exit{background:#1f0808;border:1px solid #5c1515;}
+.node-promo{background:#1f1000;border:1px solid rgba(245,166,35,.4);}
+.node-condition{background:#0d0d30;border:1px solid #3a3a9e;}
+.node-merge{background:#0a1428;border:2px solid rgba(245,166,35,.5);border-style:dashed;}
 
-/* node types */
-.node-page{
-  background:#0e2145;
-  border:1px solid #1e3d7a;
-}
-.node-new{
-  background:#0a2318;
-  border:1px solid #1d5c30;
-}
-.node-decision{
-  background:#211600;
-  border:1px solid #5c3d00;
-}
-.node-success{
-  background:#062a1e;
-  border:1px solid #0e5c3a;
-}
-.node-exit{
-  background:#1f0808;
-  border:1px solid #5c1515;
-}
-.node-promo{
-  background:#1f1000;
-  border:1px solid rgba(245,166,35,.4);
-}
-
-/* node icon */
-.node-icon{
-  font-size:18px;flex-shrink:0;
-  width:36px;height:36px;
-  border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  background:rgba(255,255,255,.05);
-}
-
-/* node content */
+.node-icon{font-size:17px;flex-shrink:0;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.05);}
 .node-body{flex:1;}
-.node-type-label{
-  font-size:9.5px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:3px;
-}
-.node-page    .node-type-label{color:#4a7fd4;}
-.node-new     .node-type-label{color:#3cb87a;}
-.node-decision .node-type-label{color:#c98a00;}
-.node-success .node-type-label{color:#27c48a;}
-.node-exit    .node-type-label{color:#e05555;}
-.node-promo   .node-type-label{color:#f5a623;}
-
-.node-title{font-size:14px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:2px;}
+.node-type{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;}
+.node-page .node-type{color:#4a7fd4;}
+.node-new .node-type{color:#3cb87a;}
+.node-decision .node-type{color:#c98a00;}
+.node-success .node-type{color:#27c48a;}
+.node-exit .node-type{color:#e05555;}
+.node-promo .node-type{color:#f5a623;}
+.node-condition .node-type{color:#8888ee;}
+.node-merge .node-type{color:#f5a623;}
+.node-title{font-size:14px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:1px;}
 .node-sub{font-size:12px;color:rgba(255,255,255,.45);line-height:1.5;}
+.new-badge{position:absolute;top:10px;right:12px;background:#1d5c30;color:#3cb87a;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid #2d8a48;}
 
-/* NEW badge */
-.new-badge{
-  position:absolute;top:10px;right:12px;
-  background:#1d5c30;color:#3cb87a;
-  font-size:9px;font-weight:800;
-  letter-spacing:.1em;text-transform:uppercase;
-  padding:2px 8px;border-radius:3px;
-  border:1px solid #2d8a48;
-}
+.connector{display:flex;flex-direction:column;align-items:center;margin:3px 0;}
+.conn-line{width:2px;height:22px;background:rgba(255,255,255,.12);}
+.conn-arrow{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid rgba(255,255,255,.18);}
 
-/* ── CONNECTOR ── */
-.connector{
-  display:flex;flex-direction:column;align-items:center;
-  gap:0;margin:4px 0;
-}
-.conn-line{
-  width:2px;height:28px;
-  background:linear-gradient(to bottom,rgba(255,255,255,.12),rgba(255,255,255,.06));
-}
-.conn-arrow{
-  width:0;height:0;
-  border-left:5px solid transparent;
-  border-right:5px solid transparent;
-  border-top:7px solid rgba(255,255,255,.18);
-}
+/* condition grid — 3 columns */
+.conditions-grid{width:100%;max-width:680px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:3px 0;}
+.cond-col{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.cond-label{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(138,138,238,.12);color:#8888ee;border:1px solid rgba(138,138,238,.2);}
+.cond-line{width:2px;height:14px;background:rgba(138,138,238,.2);}
 
-/* ── DECISION BRANCHES ── */
-.branches{
-  width:100%;max-width:520px;
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  margin:4px 0;
-}
-.branch{
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-}
-.branch-label{
-  font-size:10px;font-weight:700;
-  letter-spacing:.05em;text-transform:uppercase;
-  padding:3px 12px;border-radius:20px;
-}
-.branch-no{background:rgba(229,62,62,.12);color:#e05555;border:1px solid rgba(229,62,62,.2);}
-.branch-yes{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
-.branch-skip{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
-.branch-apply{background:rgba(245,166,35,.12);color:#f5a623;border:1px solid rgba(245,166,35,.2);}
-.branch-fail{background:rgba(229,62,62,.12);color:#e05555;border:1px solid rgba(229,62,62,.2);}
-.branch-pass{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
-.branch-line{
-  width:2px;height:20px;
-  background:rgba(255,255,255,.08);
-}
+/* branches */
+.branches{width:100%;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:3px 0;}
+.branch{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.branch-label{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 12px;border-radius:20px;}
+.bl-no{background:rgba(224,85,85,.1);color:#e05555;border:1px solid rgba(224,85,85,.2);}
+.bl-yes{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
+.bl-skip{background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);}
+.bl-apply{background:rgba(245,166,35,.12);color:#f5a623;border:1px solid rgba(245,166,35,.2);}
+.bl-fail{background:rgba(224,85,85,.1);color:#e05555;border:1px solid rgba(224,85,85,.2);}
+.bl-pass{background:rgba(39,196,138,.1);color:#27c48a;border:1px solid rgba(39,196,138,.2);}
+.branch-line{width:2px;height:16px;background:rgba(255,255,255,.08);}
+
+.merge-label{font-size:10px;color:rgba(245,166,35,.6);letter-spacing:.06em;text-transform:uppercase;text-align:center;margin-bottom:4px;}
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="topbar">
   <span class="topbar-logo">★ STARR SG</span>
-  <span class="topbar-title">Site Navigation Flowchart</span>
-  <span class="topbar-subtitle">Full Site · All Pages & Flows</span>
+  <span class="topbar-title">User Journey Flowchart</span>
+  <span class="topbar-subtitle">Travel Insurance · New UX · Homepage → Policy Issuance</span>
 </div>
 
-<!-- LEGEND -->
 <div class="legend">
+  <div class="legend-item"><div class="legend-dot ld-condition"></div>Entry condition</div>
   <div class="legend-item"><div class="legend-dot ld-page"></div>Page / Screen</div>
   <div class="legend-item"><div class="legend-dot ld-new"></div>New UX Component</div>
   <div class="legend-item"><div class="legend-dot ld-decision"></div>Decision Point</div>
@@ -206,101 +102,144 @@ body{
   <div class="legend-item"><div class="legend-dot ld-promo"></div>Promotion</div>
 </div>
 
-<!-- FLOW -->
 <div class="flow">
 
-  <!-- ════════════════════════════
-       PHASE 1 — ENTRY
-  ═══════════════════════════════ -->
+  <!-- ══════════════════════════════
+       PHASE 0 — ENTRY CONDITIONS
+  ══════════════════════════════ -->
   <div class="phase">
-    <span class="phase-icon">🌐</span>
-    <span class="phase-label">Phase 1 — Entry</span>
-    <span class="phase-desc">Homepage</span>
+    <span class="phase-icon">🚦</span>
+    <span class="phase-label">Phase 0 — Entry Conditions</span>
+    <span class="phase-desc">3 ways users arrive</span>
   </div>
 
-  <div class="node node-page">
-    <div class="node-icon">🏠</div>
+  <div class="conditions-grid">
+
+    <!-- Condition 1 -->
+    <div class="cond-col">
+      <div class="cond-label">Condition 1</div>
+      <div class="cond-line"></div>
+      <div class="node node-condition" style="max-width:100%;">
+        <div class="node-icon">🏠</div>
+        <div class="node-body">
+          <div class="node-type">Entry condition</div>
+          <div class="node-title">Lands on Homepage</div>
+          <div class="node-sub">Scrolls down → clicks "View & Compare Plans →"</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-new" style="max-width:100%;">
+        <div class="node-icon">✨</div>
+        <div class="node-body">
+          <div class="node-type">New UX Component</div>
+          <div class="node-title">Sees promo section</div>
+          <div class="node-sub">STARRTRIP + Flash Sale auto-applied</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">👆</div>
+        <div class="node-body">
+          <div class="node-type">Page / Screen</div>
+          <div class="node-title">Clicks "View & Compare Plans →"</div>
+          <div class="node-sub">Smooth-scrolls to Travel Insurance page</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Condition 2 -->
+    <div class="cond-col">
+      <div class="cond-label">Condition 2</div>
+      <div class="cond-line"></div>
+      <div class="node node-condition" style="max-width:100%;">
+        <div class="node-icon">🏠</div>
+        <div class="node-body">
+          <div class="node-type">Entry condition</div>
+          <div class="node-title">Lands on Homepage</div>
+          <div class="node-sub">Sees quote form in hero section</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">📋</div>
+        <div class="node-body">
+          <div class="node-type">Page / Screen</div>
+          <div class="node-title">Fills quote form</div>
+          <div class="node-sub">Trip type · Destination · Dates · Travellers</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-success" style="max-width:100%;">
+        <div class="node-icon">📊</div>
+        <div class="node-body">
+          <div class="node-type">Success State</div>
+          <div class="node-title">System generates plan summary cards</div>
+          <div class="node-sub">Gold · Silver · Bronze with exact pricing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Condition 3 -->
+    <div class="cond-col">
+      <div class="cond-label">Condition 3</div>
+      <div class="cond-line"></div>
+      <div class="node node-condition" style="max-width:100%;">
+        <div class="node-icon">🏠</div>
+        <div class="node-body">
+          <div class="node-type">Entry condition</div>
+          <div class="node-title">Lands on Homepage</div>
+          <div class="node-sub">Navigates directly via top nav</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">🛡️</div>
+        <div class="node-body">
+          <div class="node-type">Page / Screen</div>
+          <div class="node-title">Travel Insurance page</div>
+          <div class="node-sub">Sees quote form in hero of TI page</div>
+        </div>
+      </div>
+      <div class="cond-line"></div>
+      <div class="node node-page" style="max-width:100%;">
+        <div class="node-icon">📋</div>
+        <div class="node-body">
+          <div class="node-type">Page / Screen</div>
+          <div class="node-title">Fills quote form</div>
+          <div class="node-sub">Trip type · Destination · Dates · Travellers</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MERGE POINT -->
+  <div class="connector"><div class="conn-line" style="height:16px;"></div></div>
+  <div class="merge-label">↓ all conditions converge ↓</div>
+  <div class="node node-merge" style="max-width:520px;">
+    <div class="node-icon">🔀</div>
     <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">Homepage</div>
-      <div class="node-sub">User lands on page — hero, quote form, sections below</div>
+      <div class="node-type">Merge point</div>
+      <div class="node-title">User reaches Travel Insurance page</div>
+      <div class="node-sub">All three conditions arrive here — plan comparison visible</div>
     </div>
   </div>
 
   <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
-  <div class="node node-promo">
-    <div class="node-icon">🏷️</div>
-    <div class="node-body">
-      <div class="node-type-label">Promotion</div>
-      <div class="node-title">Promo banner</div>
-      <div class="node-sub">STARRTRIP · Flash Sale up to 65% OFF · auto-applied, no code needed</div>
-    </div>
-    <div class="new-badge">New</div>
-  </div>
-
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
-  <div class="node node-new">
-    <div class="node-icon">✨</div>
-    <div class="node-body">
-      <div class="node-type-label">New UX Component</div>
-      <div class="node-title">Exclusive Deals section</div>
-      <div class="node-sub">Inserted between hero and quote form · Seasonal discounts · auto-applied on click</div>
-    </div>
-    <div class="new-badge">New</div>
-  </div>
-
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
-  <div class="node node-page">
-    <div class="node-icon">📋</div>
-    <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">Quote form</div>
-      <div class="node-sub">Plan type · Destination · Traveller · Departure / Return · Promo code</div>
-    </div>
-  </div>
-
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
-  <div class="node node-page">
-    <div class="node-icon">👆</div>
-    <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">"Get My Discounted Quote →" CTA</div>
-      <div class="node-sub">Smooth-scrolls to quote form · discount auto-applied on arrival</div>
-    </div>
-    <div class="new-badge">New</div>
-  </div>
-
-
-  <!-- ════════════════════════════
-       PHASE 2 — TRAVEL INSURANCE
-  ═══════════════════════════════ -->
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
+  <!-- ══════════════════════════════
+       PHASE 1 — TRAVEL INSURANCE
+  ══════════════════════════════ -->
   <div class="phase">
     <span class="phase-icon">📋</span>
-    <span class="phase-label">Phase 2 — Travel Insurance Page</span>
+    <span class="phase-label">Phase 1 — Travel Insurance Page</span>
     <span class="phase-desc">Plan browse & compare</span>
   </div>
 
-  <div class="node node-page">
-    <div class="node-icon">🛡️</div>
-    <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">Travel Insurance page</div>
-      <div class="node-sub">Lands at comparison section · plan table visible immediately</div>
-    </div>
-  </div>
-
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
   <div class="node node-new">
     <div class="node-icon">🏷️</div>
     <div class="node-body">
-      <div class="node-type-label">New UX Component</div>
+      <div class="node-type">New UX Component</div>
       <div class="node-title">Dual promo banner</div>
       <div class="node-sub">STARRTRIP (all plans · auto) + Flash Campaign (Individual/Group · Bronze 65% · Silver 65% · Gold 60%) · live countdown</div>
     </div>
@@ -312,7 +251,7 @@ body{
   <div class="node node-new">
     <div class="node-icon">💛</div>
     <div class="node-body">
-      <div class="node-type-label">New UX Component</div>
+      <div class="node-type">New UX Component</div>
       <div class="node-title">Nudge banner</div>
       <div class="node-sub">"Prices below are indicative — enter your trip details to unlock your exact quote"</div>
     </div>
@@ -324,7 +263,7 @@ body{
   <div class="node node-page">
     <div class="node-icon">📊</div>
     <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
+      <div class="node-type">Page / Screen</div>
       <div class="node-title">Plan comparison table</div>
       <div class="node-sub">Gold · Silver · Bronze · indicative pricing · soft-locked · Select Plan buttons inactive</div>
     </div>
@@ -335,31 +274,30 @@ body{
   <div class="node node-decision">
     <div class="node-icon">🤔</div>
     <div class="node-body">
-      <div class="node-type-label">Decision Point</div>
+      <div class="node-type">Decision Point</div>
       <div class="node-title">Interested in a plan?</div>
-      <div class="node-sub">User decides to proceed or leave</div>
     </div>
   </div>
 
   <div class="branches">
     <div class="branch">
-      <div class="branch-label branch-no">No — not yet</div>
+      <div class="branch-label bl-no">No — not yet</div>
       <div class="branch-line"></div>
       <div class="node node-exit" style="max-width:100%;">
         <div class="node-icon">🚪</div>
         <div class="node-body">
-          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-type">Exit / Drop-off</div>
           <div class="node-title">Leaves page</div>
         </div>
       </div>
     </div>
     <div class="branch">
-      <div class="branch-label branch-yes">Yes — wants to proceed</div>
+      <div class="branch-label bl-yes">Yes — wants to proceed</div>
       <div class="branch-line"></div>
       <div class="node node-page" style="max-width:100%;">
         <div class="node-icon">📝</div>
         <div class="node-body">
-          <div class="node-type-label">Page / Screen</div>
+          <div class="node-type">Page / Screen</div>
           <div class="node-title">Scrolls to quote form</div>
           <div class="node-sub">Via nudge CTA or manually</div>
         </div>
@@ -367,25 +305,25 @@ body{
     </div>
   </div>
 
-
-  <!-- ════════════════════════════
-       PHASE 3 — QUOTE FORM
-  ═══════════════════════════════ -->
+  <!-- ══════════════════════════════
+       PHASE 2 — QUOTE FORM
+  ══════════════════════════════ -->
   <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
   <div class="phase">
     <span class="phase-icon">📝</span>
-    <span class="phase-label">Phase 3 — Quote Form</span>
+    <span class="phase-label">Phase 2 — Quote Form</span>
     <span class="phase-desc">Trip details & validation</span>
   </div>
 
   <div class="node node-page">
     <div class="node-icon">📋</div>
     <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">Fills quote form</div>
-      <div class="node-sub">Plan type · Destination · Traveller · Departure / Return · No. of children</div>
+      <div class="node-type">Page / Screen</div>
+      <div class="node-title">Multi-step quote form</div>
+      <div class="node-sub">Step 1: Trip type · Destination · Cover type · Dates &nbsp;|&nbsp; Step 2: Travellers · Promo code</div>
     </div>
+    <div class="new-badge">New</div>
   </div>
 
   <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
@@ -393,7 +331,7 @@ body{
   <div class="node node-decision">
     <div class="node-icon">✔️</div>
     <div class="node-body">
-      <div class="node-type-label">Decision Point</div>
+      <div class="node-type">Decision Point</div>
       <div class="node-title">Form complete?</div>
       <div class="node-sub">Validation check on all required fields</div>
     </div>
@@ -401,24 +339,24 @@ body{
 
   <div class="branches">
     <div class="branch">
-      <div class="branch-label branch-no">Incomplete</div>
+      <div class="branch-label bl-no">Incomplete</div>
       <div class="branch-line"></div>
       <div class="node node-exit" style="max-width:100%;">
         <div class="node-icon">⚠️</div>
         <div class="node-body">
-          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-type">Exit / Drop-off</div>
           <div class="node-title">Inline validation errors</div>
-          <div class="node-sub">Returns to form</div>
+          <div class="node-sub">Returns to form to complete</div>
         </div>
       </div>
     </div>
     <div class="branch">
-      <div class="branch-label branch-yes">Complete</div>
+      <div class="branch-label bl-yes">Complete</div>
       <div class="branch-line"></div>
       <div class="node node-success" style="max-width:100%;">
         <div class="node-icon">🔓</div>
         <div class="node-body">
-          <div class="node-type-label">Success State</div>
+          <div class="node-type">Success State</div>
           <div class="node-title">Exact prices unlock</div>
           <div class="node-sub">Soft lock removed · Select Plan buttons active</div>
         </div>
@@ -426,24 +364,34 @@ body{
     </div>
   </div>
 
-
-  <!-- ════════════════════════════
-       PHASE 4 — PLAN SELECTION
-  ═══════════════════════════════ -->
+  <!-- ══════════════════════════════
+       PHASE 3 — PLAN SELECTION
+  ══════════════════════════════ -->
   <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
   <div class="phase">
     <span class="phase-icon">💳</span>
-    <span class="phase-label">Phase 4 — Plan Selection & Purchase</span>
+    <span class="phase-label">Phase 3 — Plan Selection & Purchase</span>
     <span class="phase-desc">Checkout flow</span>
   </div>
 
   <div class="node node-page">
     <div class="node-icon">🎯</div>
     <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
+      <div class="node-type">Page / Screen</div>
       <div class="node-title">Selects a plan</div>
       <div class="node-sub">Gold (from S$40) · Silver (from S$30) · Bronze (from S$19)</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">➕</div>
+    <div class="node-body">
+      <div class="node-type">Page / Screen</div>
+      <div class="node-title">Add-ons selection</div>
+      <div class="node-sub">Optional extras offered before checkout</div>
     </div>
   </div>
 
@@ -452,35 +400,57 @@ body{
   <div class="node node-decision">
     <div class="node-icon">🏷️</div>
     <div class="node-body">
-      <div class="node-type-label">Decision Point</div>
+      <div class="node-type">Decision Point</div>
       <div class="node-title">Discount applied?</div>
-      <div class="node-sub">STARRTRIP and Flash Campaign are auto-applied on click</div>
+      <div class="node-sub">STARRTRIP and Flash Campaign auto-applied on click</div>
     </div>
   </div>
 
   <div class="branches">
     <div class="branch">
-      <div class="branch-label branch-skip">No promo eligible</div>
+      <div class="branch-label bl-skip">No promo eligible</div>
       <div class="branch-line"></div>
       <div class="node node-page" style="max-width:100%;">
         <div class="node-icon">➡️</div>
         <div class="node-body">
-          <div class="node-type-label">Page / Screen</div>
+          <div class="node-type">Page / Screen</div>
           <div class="node-title">Full price checkout</div>
         </div>
       </div>
     </div>
     <div class="branch">
-      <div class="branch-label branch-apply">Auto-applied</div>
+      <div class="branch-label bl-apply">Auto-applied</div>
       <div class="branch-line"></div>
       <div class="node node-success" style="max-width:100%;">
         <div class="node-icon">💰</div>
         <div class="node-body">
-          <div class="node-type-label">Success State</div>
+          <div class="node-type">Success State</div>
           <div class="node-title">Discount applied</div>
-          <div class="node-sub">Price updates instantly</div>
+          <div class="node-sub">Price updates instantly in checkout</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">📋</div>
+    <div class="node-body">
+      <div class="node-type">Page / Screen</div>
+      <div class="node-title">Personal information form</div>
+      <div class="node-sub">User fills personal data · clicks Next</div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
+
+  <div class="node node-page">
+    <div class="node-icon">🔍</div>
+    <div class="node-body">
+      <div class="node-type">Page / Screen</div>
+      <div class="node-title">Review and confirm</div>
+      <div class="node-sub">User reviews full purchase details</div>
     </div>
   </div>
 
@@ -489,9 +459,9 @@ body{
   <div class="node node-page">
     <div class="node-icon">💳</div>
     <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
+      <div class="node-type">Page / Screen</div>
       <div class="node-title">Checkout & payment</div>
-      <div class="node-sub">Visa · Mastercard · PayNow</div>
+      <div class="node-sub">Visa · Mastercard · PayNow · clicks "Confirm and Pay"</div>
     </div>
   </div>
 
@@ -500,7 +470,7 @@ body{
   <div class="node node-decision">
     <div class="node-icon">🔐</div>
     <div class="node-body">
-      <div class="node-type-label">Decision Point</div>
+      <div class="node-type">Decision Point</div>
       <div class="node-title">Payment successful?</div>
       <div class="node-sub">Payment gateway check</div>
     </div>
@@ -508,24 +478,24 @@ body{
 
   <div class="branches">
     <div class="branch">
-      <div class="branch-label branch-fail">Failed</div>
+      <div class="branch-label bl-fail">Failed</div>
       <div class="branch-line"></div>
       <div class="node node-exit" style="max-width:100%;">
         <div class="node-icon">❌</div>
         <div class="node-body">
-          <div class="node-type-label">Exit / Drop-off</div>
+          <div class="node-type">Exit / Drop-off</div>
           <div class="node-title">Payment error</div>
           <div class="node-sub">Retry prompt shown</div>
         </div>
       </div>
     </div>
     <div class="branch">
-      <div class="branch-label branch-pass">Success</div>
+      <div class="branch-label bl-pass">Success</div>
       <div class="branch-line"></div>
       <div class="node node-success" style="max-width:100%;">
         <div class="node-icon">✅</div>
         <div class="node-body">
-          <div class="node-type-label">Success State</div>
+          <div class="node-type">Success State</div>
           <div class="node-title">Payment confirmed</div>
           <div class="node-sub">Policy being issued</div>
         </div>
@@ -533,35 +503,23 @@ body{
     </div>
   </div>
 
-
-  <!-- ════════════════════════════
-       PHASE 5 — POLICY ISSUANCE
-  ═══════════════════════════════ -->
+  <!-- ══════════════════════════════
+       PHASE 4 — POLICY ISSUANCE
+  ══════════════════════════════ -->
   <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
 
   <div class="phase">
     <span class="phase-icon">🎉</span>
-    <span class="phase-label">Phase 5 — Policy Issuance</span>
+    <span class="phase-label">Phase 4 — Policy Issuance</span>
     <span class="phase-desc">Post-purchase</span>
   </div>
 
   <div class="node node-success">
     <div class="node-icon">📧</div>
     <div class="node-body">
-      <div class="node-type-label">Success State</div>
+      <div class="node-type">Success State</div>
       <div class="node-title">Policy issued instantly</div>
       <div class="node-sub">PDF sent to email · Account updated</div>
-    </div>
-  </div>
-
-  <div class="connector"><div class="conn-line"></div><div class="conn-arrow"></div></div>
-
-  <div class="node node-page">
-    <div class="node-icon">🏥</div>
-    <div class="node-body">
-      <div class="node-type-label">Page / Screen</div>
-      <div class="node-title">Claims portal</div>
-      <div class="node-sub">Submit claim · Confirmation email · Claim processed · 24/7 emergency support</div>
     </div>
   </div>
 
@@ -570,7 +528,7 @@ body{
   <div class="node node-success">
     <div class="node-icon">🌏</div>
     <div class="node-body">
-      <div class="node-type-label">Success State</div>
+      <div class="node-type">Success State</div>
       <div class="node-title">User travels with coverage</div>
       <div class="node-sub">24/7 emergency support · Claims portal available · Policy documents accessible</div>
     </div>
@@ -578,9 +536,8 @@ body{
 
 </div>
 
-<!-- FOOTER -->
 <div style="text-align:center;padding:40px 24px 0;font-size:11px;color:rgba(255,255,255,.2);letter-spacing:.08em;text-transform:uppercase;">
-  Starr SG · Travel Insurance · Site Navigation Flowchart · New UX
+  Starr SG · Travel Insurance · UX Recommendation · CTA Journey Flowchart
 </div>
 
 </body>
